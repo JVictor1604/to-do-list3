@@ -1,14 +1,14 @@
-{
-  "openapi": "3.0.0",
-  "info": {
-    "title": "API De Jogos",
-    "description": "API para CRUD de paletas mexicanas e carrinho de compras",
-    "termsOfService": "",
-    "contact": {
-      "email": "josevictor8569@gmail.com"
+ {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API De Jogos",
+      "description": "API para CRUD de paletas mexicanas e carrinho de compras",
+      "termsOfService": "",
+      "contact": {
+        "email": "tlima@blueedtech.com.br"
+      },
+      "version": "1.0.0"
     },
-    "version": "1.0.0"
-  },
 
   "servers": [
     {
@@ -16,7 +16,7 @@
       "description": "API de Jogos em processamento"
     },
     {
-      "url": "https://api-elgeladon.herokuapp.com/",
+      "url": "https://api-elgeladon.herokuapp.com/paletas",
       "description": "API de Jogos em processamento"
     }
   ],
@@ -78,7 +78,8 @@
       }
     },
     "/adicionarjogo": {
-      "post": {
+      
+        "post": {
         "summary": "Cadastrar um jogo",
         "description": "Rota responsável por cadastrar um jogo",
         "tags": ["Jogos"],
@@ -89,107 +90,129 @@
                 "$ref": "#/components/schemas/Paletas"
               },
               "examples": {
-                "Jogos": {
-                  "value": {
+                "Jogos": { 
+                    "value": {
+                
                     "nome": "The Last of Us",
-
-                    "descricao": "The Last of Us é uma franquia de jogos eletrônicos de ação-aventura e survival horror exclusiva da PlayStation, criada por Neil Druckmann. A franquia é situada em um mundo pós-apocalíptico, com seres humanos hostis e criaturas canibalísticas infectadas por uma mutação do fungo cordyceps.",
-
+                
+                    "descricao":
+                      "The Last of Us é uma franquia de jogos eletrônicos de ação-aventura e survival horror exclusiva da PlayStation, criada por Neil Druckmann. A franquia é situada em um mundo pós-apocalíptico, com seres humanos hostis e criaturas canibalísticas infectadas por uma mutação do fungo cordyceps.",
+                
                     "genero": "Ação-aventura",
-
+                
                     "plataforma": "PS4",
-
+                
                     "preco": 50,
-
+                
                     "estoque": 15,
-
+                
                     "lançamento": 2013
-                  }
+                    }
+                }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Paletas"
                 }
               }
             }
           }
         }
-      },
-      "responses": {
-        "400": {
-          "description": "Bad Request"
-        },
-        "201": {
-          "description": "Created"
-        }
       }
-    }
-  },
-  "/atualizarjogo/:id": {
-    "put": {
-      "summary": "Editar um jogo pelo ID",
-      "description": "Rota responsável por editar um jogo pelo ID",
-      "tags": ["Jogos"],
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "description": "Id do jogo para a busca",
-          "required": true
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "examples": {
-              "Jogos": {
-                "value": {
-                  "nome": "The Last of Us editado",
+    },
+    "/atualizarjogo/:id": {
+      "put": {
+        "summary": "Editar um jogo pelo ID",
+        "description": "Rota responsável por editar um jogo pelo ID",
+        "tags": ["Jogos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do jogo para a busca",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
 
-                  "descricao": "The Last of Us é uma franquia de jogos eletrônicos de ação-aventura e survival horror exclusiva da PlayStation, criada por Neil Druckmann. A franquia é situada em um mundo pós-apocalíptico, com seres humanos hostis e criaturas canibalísticas infectadas por uma mutação do fungo cordyceps.",
+              "examples": {
+                "Jogos": {
+                  "value": { 
 
-                  "genero": "Ação-aventura",
-
-                  "plataforma": "PS4",
-
-                  "preco": 50,
-
-                  "estoque": 15,
-
-                  "lançamento": 2013
+                    "nome": "The Last of Us editado",
+                
+                    "descricao":
+                      "The Last of Us é uma franquia de jogos eletrônicos de ação-aventura e survival horror exclusiva da PlayStation, criada por Neil Druckmann. A franquia é situada em um mundo pós-apocalíptico, com seres humanos hostis e criaturas canibalísticas infectadas por uma mutação do fungo cordyceps.",
+                
+                    "genero": "Ação-aventura",
+                
+                    "plataforma": "PS4",
+                
+                    "preco": 50,
+                
+                    "estoque": 15,
+                
+                    "lançamento": 2013
+                
+                }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Paletas"
                 }
               }
             }
           }
         }
-      },
-      "responses": {
-        "400": {
-          "description": "Bad Request"
-        },
-        "200": {
-          "description": "OK"
+      }
+    },
+    "/deletarjogo/:id": {
+      "delete": {
+        "summary": "Apagar um jogo pelo ID",
+        "description": "Rota responsável por apagar um jogo pelo ID",
+        "tags": ["Jogos"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do jogo para deleção",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
         }
       }
     }
-  },
-  "/deletarjogo/:id": {
-    "delete": {
-      "summary": "Apagar um jogo pelo ID",
-      "description": "Rota responsável por apagar um jogo pelo ID",
-      "tags": ["Jogos"],
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "description": "Id do jogo para deleção",
-          "required": true
-        }
-      ],
-      "responses": {
-        "400": {
-          "description": "Bad Request"
-        },
-        "200": {
-          "description": "OK"
-        }
-      }
-    }
-  }
 }
