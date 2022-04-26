@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
       "title": "API De Jogos",
-      "description": "API para CRUD de paletas mexicanas e carrinho de compras",
+      "description": "API para CRUD de uma lista de Jogos",
       "termsOfService": "",
       "contact": {
         "email": "tlima@blueedtech.com.br"
@@ -46,7 +46,7 @@
         }
       }
     },
-    "/jogos/:id": {
+    "/jogos/{id}": {
       "get": {
         "summary": "Busca um jogo pelo ID",
         "description": "Rota responsável por buscar uma jogo pelo ID",
@@ -130,9 +130,9 @@
             }
           }
         }
-      }
     },
-    "/atualizarjogo/:id": {
+
+    "/atualizarjogo/{id}": {
       "put": {
         "summary": "Editar um jogo pelo ID",
         "description": "Rota responsável por editar um jogo pelo ID",
@@ -192,7 +192,7 @@
         }
       }
     },
-    "/deletarjogo/:id": {
+    "/deletarjogo/{id}": {
       "delete": {
         "summary": "Apagar um jogo pelo ID",
         "description": "Rota responsável por apagar um jogo pelo ID",
@@ -215,4 +215,5 @@
         }
       }
     }
-}
+  } 
+ }
